@@ -27,9 +27,9 @@ public class StreamExercise5 {
 	public static void main(String[] args) {
 		final Path path = Paths.get("src/main/java/cp/week9/test2.txt");
 		try (Stream<String> lines = Files.lines(path)) {
-			HashMap<String, Integer> counts = lines.flatMap(line -> Stream.of(line.split(""))).map(c -> {
-				HashMap<String, Integer> n = new HashMap<>();
-				n.put(c, 1);
+			HashMap<String, Integer> counts = lines.flatMapToInt(String::chars).mapToObj(c -> {
+				HashMap<String, Integer> n = new HashMap<String, Integer>();
+				n.put(Character.toString((char) c), 1);
 				return n;
 			}).reduce(new HashMap<String, Integer>(), (acc, element) -> {
 				element.forEach((key, value) -> acc.merge(key, value, Integer::sum));
