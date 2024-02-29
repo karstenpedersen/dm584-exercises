@@ -18,7 +18,10 @@ public class StreamExercise4 {
 		try (Stream<String> lines = Files.lines(path)) {
 			// long num = lines.mapToLong(line -> line.chars().filter(c -> c ==
 			// 'C').count()).sum();
-			int num = lines.mapToInt(line -> line.chars().filter(c -> c == 'C').toArray().length).sum();
+			// int num2 = lines.mapToInt(line -> line.chars().filter(c -> c ==
+			// 'C').toArray().length).sum();
+			long num = lines.flatMapToInt(String::chars).filter(c -> c == 'C').count();
+			// System.out.println(num2);
 			System.out.println(num);
 		} catch (IOException e) {
 			e.printStackTrace();

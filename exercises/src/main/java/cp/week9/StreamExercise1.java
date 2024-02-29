@@ -18,7 +18,7 @@ public class StreamExercise1 {
 	public static void main(String[] args) {
 		final Path path = Paths.get("src/main/java/cp/week9/test2.txt");
 		try (Stream<String> lines = Files.lines(path)) {
-			lines.filter(line -> line.endsWith(".")).forEach(line -> System.out.println(line));
+			lines.filter(line -> line.endsWith(".")).forEach(System.out::println);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

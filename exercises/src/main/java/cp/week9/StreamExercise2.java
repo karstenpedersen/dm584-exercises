@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 
 public class StreamExercise2 {
@@ -22,9 +21,10 @@ public class StreamExercise2 {
 	public static void main(String[] args) {
 		final Path path = Paths.get("src/main/java/cp/week9/test2.txt");
 		try (Stream<String> lines = Files.lines(path)) {
-			ArrayList<String> filtered = lines
+			var filtered = lines
 					.filter(line -> line.startsWith("C"))
-					.collect(ArrayList<String>::new, List::add, List::addAll);
+					.collect(ArrayList<String>::new, ArrayList::add, ArrayList::addAll); // Use toList, but this was
+																							// just to show
 			System.out.println(filtered);
 		} catch (IOException e) {
 			e.printStackTrace();
