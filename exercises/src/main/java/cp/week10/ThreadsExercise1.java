@@ -15,16 +15,12 @@ public class ThreadsExercise1 {
 	private static class Counter {
 		private Integer i = 0;
 
-		public void increment() {
-			synchronized (this) {
-				this.i++;
-			}
+		public synchronized void increment() {
+			this.i++;
 		}
 
-		public void decrement() {
-			synchronized (this) {
-				this.i--;
-			}
+		public synchronized void decrement() {
+			this.i--;
 		}
 
 		@Override
