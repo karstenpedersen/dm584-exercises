@@ -1,0 +1,5 @@
+Pros for global:
+- Less code is needed.
+Cons:
+- More side effects.
+- They have to interact with the global counter atomically.

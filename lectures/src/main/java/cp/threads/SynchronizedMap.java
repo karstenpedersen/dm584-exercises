@@ -43,7 +43,7 @@ public class SynchronizedMap
 			e.printStackTrace();
 		}
 		
-//		occurrences.forEach( (word, n) -> System.out.println( word + ": " + n ) );
+		occurrences.forEach( (word, n) -> System.out.println( word + ": " + n ) );
 	}
 	
 	private static void computeOccurrences( String filename, Map< String, Integer > occurrences )
