@@ -44,7 +44,7 @@ public class ThreadsExercise14 {
 			List<Future<Map<Path, FileInfo>>> futures = Files.walk(Paths.get("data"))
 					.filter(Files::isRegularFile)
 					.map(filepath -> executor.submit(() -> computeOccurrences(filepath)))
-					.collect(Collectors.toList());
+					.toList();
 			for (Future<Map<Path, FileInfo>> future : futures) {
 				Map<Path, FileInfo> fileInfoMap = future.get();
 				fileInfoMap.forEach((path, fileinfo) -> {

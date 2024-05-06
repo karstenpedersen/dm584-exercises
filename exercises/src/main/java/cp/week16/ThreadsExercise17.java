@@ -38,7 +38,7 @@ public class ThreadsExercise17 {
 			long pendingTasks = Files.walk(Paths.get("data"))
 					.filter(Files::isRegularFile)
 					.map(filepath -> completionService.submit(() -> computeOccurrences(filepath)))
-					.count();
+					.count(); // SHOULD ADD CHECK HERE FOR LINES
 
 			boolean[] shouldExecute = {true};
 			while (pendingTasks > 0 && shouldExecute[0]) {

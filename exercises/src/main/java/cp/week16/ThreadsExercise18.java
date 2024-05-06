@@ -34,14 +34,10 @@ public class ThreadsExercise18 {
 					.map(filepath -> CompletableFuture.supplyAsync(() -> computeOccurrences(filepath))
 							.thenAccept(fileOccurences -> fileOccurences.forEach((path, fileinfo) -> fileInfos.put(path, fileinfo))))
 					.toList().toArray(new CompletableFuture[0]);
-					
-			CompletableFuture<Object> anyOfFuture = CompletableFuture.anyOf(futures);
+			
+			// USE CompletableFuture.supplyAsync(() -> moreThanTenLines(filepath))		
 
-			FileInfo result = (FileInfo)anyOfFuture.get();
-
-			if (result.nlines > 10) {
-				
-			}
+			CompletableFuture.anyOf(futures).join();
 
 		} catch (IOException e) {
 			e.printStackTrace();

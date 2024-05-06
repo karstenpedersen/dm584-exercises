@@ -42,9 +42,7 @@ public class ThreadsExercise15 {
 
 			while (pendingTasks > 0) {
 				Map<Path, FileInfo> fileInfoMap = completionService.take().get();
-				fileInfoMap.forEach((path, fileinfo) -> {
-					fileInfos.put(path, fileinfo);
-				});
+				fileInfos.putAll(fileInfoMap);
 				pendingTasks--;
 			}
 		} catch (InterruptedException | ExecutionException | IOException e) {
@@ -65,7 +63,7 @@ public class ThreadsExercise15 {
 		try {
 			long size = Files.size(textFile);
 			long nlines = Files.lines(textFile).count();
-			long linesThatStartsWithL = Files.lines(textFile).filter(line -> line.startsWith("L")).toList().size();
+			long linesThatStartsWithL = Files.lines(textFile).filter(line -> line.startsWith("L")).count();
 
 			FileInfo fileinfo = new FileInfo(size, nlines, linesThatStartsWithL);
 			Map<Path, FileInfo> map = new HashMap<>() {
